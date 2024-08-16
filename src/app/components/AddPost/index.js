@@ -1,38 +1,55 @@
-import React from 'react';
-import { FaUserCircle, FaPhotoVideo, FaPen } from 'react-icons/fa';
-import { AiOutlineVideoCamera } from 'react-icons/ai';
+'use client'
+import React, { useState } from 'react';
+import { FaUserCircle, FaNewspaper } from 'react-icons/fa';
+import { AiOutlinePicture, AiOutlineVideoCamera } from 'react-icons/ai';
+import PostModal from './../PostModal';
 
-const ContentBox = () => {
+const AddPost = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
-    <div className="w-[576px] h-[163px] bg-white shadow-md rounded-lg p-4 flex items-center space-x-4 mt-5" >
+    <div className="bg-white mx-auto max-w-[700px] shadow-md rounded-lg p-4 grid grid-cols-12 mt-2">
       
-      <div className="flex-shrink-0">
-        <FaUserCircle className="text-gray-600" size={48} />
-      </div>
-      
-      <div className="flex-1">
-        <textarea
-          placeholder="Write something..."
-          className="w-full h-[100px] border border-gray-300 rounded-lg p-2 resize-none"
+      <div className="col-span-1">
+        <img
+          src="/male-avatar-placeholder.webp"
+          alt="Avatar"
+          className="w-12 h-12 rounded-full object-cover"
         />
       </div>
       
-      <div className="flex space-x-4">
-        <div className="flex items-center space-x-1 text-gray-600">
-          <FaPhotoVideo size={24} />
-          <span>Photo</span>
-        </div>
-        <div className="flex items-center space-x-1 text-gray-600">
-          <AiOutlineVideoCamera size={24} />
-          <span>Video</span>
-        </div>
-        <div className="flex items-center space-x-1 text-gray-600">
-          <FaPen size={24} />
-          <span>Article</span>
+      <div className="col-span-11 ms-3">
+        <textarea
+          placeholder="What do you want to talk about?"
+          className="w-full h-[42px] border border-gray-300 rounded-lg p-2 resize-none mb-2 bg-gray-100 text-gray-600"
+          style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+          onClick={openModal}
+        />
+        
+        <div className="flex items-center gap-3">
+          <button className="flex flex-wrap text-xs font-semibold items-center gap-2 text-gray-600 bg-white border border-gray-300 hover:text-red-500 hover:bg-gray-100 rounded-md py-2 px-4 md:py-3 md:px-6 lg:py-2 lg:px-8 cursor-pointer">
+            <AiOutlinePicture size={20} color="red"/>
+            <span>Photo</span>
+          </button>
+
+          <button className="flex flex-wrap text-xs font-semibold items-center gap-2 text-gray-600 bg-white border border-gray-300 hover:text-green-500 hover:bg-gray-100 rounded-md py-2 px-4 md:py-3 md:px-6 lg:py-2 lg:px-8 cursor-pointer">
+            <AiOutlineVideoCamera size={20} color="green" />
+            <span>Video</span>
+          </button>
+
+          <button className="flex flex-wrap text-xs font-semibold items-center gap-2 text-gray-600 bg-white border border-gray-300 hover:text-red-500 hover:bg-gray-100 rounded-md py-2 px-4 md:py-3 md:px-6 lg:py-2 lg:px-8 cursor-pointer">
+            <FaNewspaper size={20} color="#FF474C"/>
+            <span>Write Article</span>
+          </button>
         </div>
       </div>
+
+      <PostModal isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
 };
 
-export default ContentBox;
+export default AddPost;

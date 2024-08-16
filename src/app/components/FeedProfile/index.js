@@ -1,9 +1,10 @@
+'use client'
 import React from 'react';
 import { FaBookmark } from 'react-icons/fa';
 
 const ProfileFeed = () => {
   return (
-    <div className="relative w-full max-w-[300px] h-[331px] min-w-[300px] min-h-[331px] bg-white text-black shadow-lg rounded-lg overflow-hidden mt-5 mx-auto">
+    <div className="relative mx-auto w-full max-w-[350px] h-[331px] bg-white text-black shadow-lg rounded-lg overflow-hidden mt-2">
       
       <div className="w-full h-[100px]">
         <img src="/feedbgimg.webp" alt="Profile Banner" className="w-full h-full object-cover" />
@@ -14,7 +15,7 @@ const ProfileFeed = () => {
       </div>
       
       <div className="absolute top-[160px] left-1/2 transform -translate-x-1/2 text-center">
-        <h2 className="text-lg font-bold">Profile Name</h2>
+        <h2 className="text-lg font-bold">{localStorage.getItem('name')}</h2>
       </div>
       
       <div className="absolute bottom-0 w-full px-5 py-4">
